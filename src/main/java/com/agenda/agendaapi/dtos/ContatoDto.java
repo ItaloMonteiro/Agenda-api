@@ -1,11 +1,12 @@
 package com.agenda.agendaapi.dtos;
 
-
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @AllArgsConstructor
 @Builder
@@ -15,6 +16,7 @@ public class ContatoDto {
 
     @NotBlank
     private String nome;
+    @Email
     @NotBlank
     private String email;
     @NotBlank

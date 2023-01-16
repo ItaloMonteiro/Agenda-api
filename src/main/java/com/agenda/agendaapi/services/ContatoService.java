@@ -2,12 +2,12 @@ package com.agenda.agendaapi.services;
 
 import com.agenda.agendaapi.models.ContatoModel;
 import com.agenda.agendaapi.repositories.ContatoRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
