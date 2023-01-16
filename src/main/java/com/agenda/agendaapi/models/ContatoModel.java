@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -32,5 +33,6 @@ public class ContatoModel implements Serializable {
     private String email;
     @Column(nullable = false, unique = true)
     @NotBlank
+    @Size(min = 10, max = 11)
     private String telefone;
 }

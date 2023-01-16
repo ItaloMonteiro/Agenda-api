@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @AllArgsConstructor
 @Builder
@@ -20,5 +21,6 @@ public class ContatoDto {
     @NotBlank
     private String email;
     @NotBlank
+    @Size(min = 10, max = 11)
     private String telefone;
 }
