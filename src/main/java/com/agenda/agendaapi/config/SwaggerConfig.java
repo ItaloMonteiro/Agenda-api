@@ -22,23 +22,6 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.agenda.agendaapi"))
                 .paths(PathSelectors.regex("/.*"))
-                .build()
-                .apiInfo(metaInfo());
+                .build();
     }
-
-    private ApiInfo metaInfo(){
-        ApiInfo apiInfo = new ApiInfo(
-                "API REST AGENDA",
-                "API de Agenda para cadastro de contatos.",
-                "1.0",
-                "Terms of Service",
-                new Contact("Italo Monteiro", "https://github.com/ItaloMonteiro",
-                        "italovitordasilvamonteiro@gmail.com"),
-                "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
-        );
-
-        return apiInfo;
-    }
-
 }
