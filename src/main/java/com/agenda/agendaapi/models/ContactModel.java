@@ -17,15 +17,16 @@ import java.io.Serializable;
 @Entity
 @NoArgsConstructor
 @Table(name = "TB_AGENDA")
-public class ContatoModel implements Serializable {
+public class ContactModel implements Serializable {
     private final static long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long agendaId;
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "my_seq")
+    @SequenceGenerator(name = "my_seq", sequenceName = "MYSEQ_SEQ", allocationSize = 1)
+    private Long id;
     @Column(nullable = false)
     @NotBlank
-    private String nome;
+    private String name;
     @Column(nullable = false, unique = true)
     @Email
     @NotBlank
@@ -33,5 +34,5 @@ public class ContatoModel implements Serializable {
     @Column(nullable = false, unique = true)
     @NotBlank
     @Size(min = 10, max = 11)
-    private String telefone;
+    private String phone;
 }

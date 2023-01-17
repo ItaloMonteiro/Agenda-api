@@ -13,14 +13,14 @@ import javax.validation.constraints.Size;
 @Builder
 @Data
 @NoArgsConstructor
-public class ContatoDto {
+public class ContactDto {
 
     @NotBlank
-    private String nome;
+    private String name;
     @Email
     @NotBlank
     private String email;
     @NotBlank
     @Size(min = 10, max = 11)
-    private String telefone;
+    private String phone;
 }
