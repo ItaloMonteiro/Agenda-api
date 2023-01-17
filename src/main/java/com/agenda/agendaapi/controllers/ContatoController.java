@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
-import java.util.UUID;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -45,7 +44,7 @@ public class ContatoController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Retorna um contato pelo id")
-    public ResponseEntity<Object> verUmaAgenda(@PathVariable(value = "id") UUID id){
+    public ResponseEntity<Object> verUmaAgenda(@PathVariable(value = "id") Long id){
         Optional<ContatoModel> contatoModelOptional = contatoService.findById(id);
         if (!contatoModelOptional.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Contato na agenda não encontrada.");

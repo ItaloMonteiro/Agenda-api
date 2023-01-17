@@ -10,7 +10,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.UUID;
 
 @AllArgsConstructor
 @Builder
@@ -23,7 +22,7 @@ public class ContatoModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID agendaId;
+    private Long agendaId;
     @Column(nullable = false)
     @NotBlank
     private String nome;

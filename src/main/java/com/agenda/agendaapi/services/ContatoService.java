@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class ContatoService {
@@ -25,7 +24,7 @@ public class ContatoService {
         return contatoRepository.findAll(pageable);
     }
 
-    public Optional<ContatoModel> findById(UUID id){
+    public Optional<ContatoModel> findById(Long id){
         return contatoRepository.findById(id);
     }
 
