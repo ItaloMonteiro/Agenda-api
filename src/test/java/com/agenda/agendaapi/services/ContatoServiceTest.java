@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -24,5 +22,18 @@ class ContatoServiceTest {
     public void buscarPorIdTeste(){
         ContatoModel contatoModel = contatoService.findById(1L).get();
         assertEquals("italo", contatoModel.getNome());
+        assertEquals("italo@gmail.com", contatoModel.getEmail());
+        assertEquals("81981926641", contatoModel.getTelefone());
+
+    }
+    @Test
+    public void salvarContatoTeste(){
+        ContatoModel contatoModel = new ContatoModel();
+        contatoModel.setNome("oziel");
+        contatoModel.setEmail("oziel@gmail.com");
+        contatoModel.setTelefone("81954682456");
+        ContatoModel salvarContato = contatoService.save(contatoModel);
+        assertNotNull(salvarContato);
+
     }
 }

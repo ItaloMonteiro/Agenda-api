@@ -47,7 +47,7 @@ public class ContatoController {
     public ResponseEntity<Object> verUmaAgenda(@PathVariable(value = "id") Long id){
         Optional<ContatoModel> contatoModelOptional = contatoService.findById(id);
         if (!contatoModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Contato na agenda não encontrada.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Contato não encontrado na agenda.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(contatoModelOptional.get());
     }
@@ -59,6 +59,18 @@ public class ContatoController {
         return ResponseEntity.status(HttpStatus.OK).body("Contato deletado com sucesso!");
     }
 
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Deleta um contato pelo id")
+    public ResponseEntity<Object> deletAgendaPorId(@PathVariable(value = "id") Long id){
+        Optional<ContatoModel> contatoModelOptional = contatoService.findById(id);
+        if (!contatoModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Contato não encontrado na agenda.");
+        }
+        contatoService.delete(contatoModelOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Contato deletado com sucesso!");
+    }
+
+
     @PutMapping("/")
     @ApiOperation(value = "Atualiza um contato")
     public ResponseEntity<Object> atualizarAgenda( @RequestBody @Valid ContatoModel contatoModel){
@@ -67,5 +79,19 @@ public class ContatoController {
         novoContatoModel.setAgendaId((contatoModel.getAgendaId()));
         contatoService.save(novoContatoModel);
         return ResponseEntity.status(HttpStatus.OK).body("Contato atualizado com sucesso na agenda!");
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation(value = "Atualiza um contato pelo id")
+    public ResponseEntity<Object> atualizarContatoporId(@PathVariable(value = "id") Long id, @RequestBody @Valid ContatoDto contatoDto){ //precisamos passar novamente o @RequestBody e @Valid pois é como se criasse outro no lugar do existente
+        Optional<ContatoModel> contatoModelOptional = contatoService.findById(id);
+        if (!contatoModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found.");
+        }
+        var contatoModel = new ContatoModel();
+        BeanUtils.copyProperties(contatoDto, contatoModel);
+        contatoModel.setAgendaId(contatoModelOptional.get().getAgendaId());
+
+        return ResponseEntity.status(HttpStatus.OK).body(contatoService.save(contatoModel));
     }
 }
